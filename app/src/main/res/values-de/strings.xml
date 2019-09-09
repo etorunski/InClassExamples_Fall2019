@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="welcome">Hallo Welt!</string>
+    <string name="item1">Erste Artikel</string>
+    <string name="item2">Zweite Artikel</string>
+    <string name="item3">Dritte Artikel</string>
+    <string name="app_name">Vorlesung Beispeile Herbst 2019</string>
+</resources>

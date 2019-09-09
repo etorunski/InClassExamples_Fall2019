@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">InClassExamples_Fall2019</string>
+    <string name="welcome">Hello world!</string>
+    <string name="item1">Button 1</string>
+    <string name="item2">Button 2</string>
+    <string name="item3">Button 3</string>
 </resources>
