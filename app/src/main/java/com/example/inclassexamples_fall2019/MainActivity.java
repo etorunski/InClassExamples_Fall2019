@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        /*
         //find button 1 from what was loaded, add a click listener
         Button b1 = findViewById(R.id.button1);
         if(b1 != null)
@@ -27,5 +29,7 @@ public class MainActivity extends AppCompatActivity {
         //use a Lambda function to set a click listener
         Button b2 = (Button)findViewById(R.id.button2);
         b2.setOnClickListener( clk -> Log.i("Message", "You clicked button 1"));
+
+         */
     }
 }
