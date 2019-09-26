@@ -1,10 +1,13 @@
 package com.example.inclassexamples_fall2019;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,7 +31,21 @@ public class ListViewExample extends AppCompatActivity {
 
         //You only need 2 lines in onCreate to actually display data:
         ListView theList = findViewById(R.id.theList);
-        theList.setAdapter( new MyListAdapter() );
+        theList.setAdapter( myAdapter = new MyListAdapter() );
+        theList.setOnItemClickListener( ( parent,  view,  position,  id) ->{
+                Log.i("CLicked", "You clicked item:" + position);
+
+            });
+
+
+        Button addButton = findViewById(R.id.addButton);
+        addButton.setOnClickListener( clik -> {
+            objects.add("Item " + (1 + objects.size()));
+            myAdapter.notifyDataSetChanged(); //update yourself
+        } );
+
+//        SwipeRefreshLayout refresher = findViewById(R.id.refresher);
+ //       refresher.setOnRefreshListener( );
     }
 
 
@@ -44,14 +61,19 @@ public class ListViewExample extends AppCompatActivity {
 
         public View getView(int p, View recycled, ViewGroup parent)
         {
+
             LayoutInflater inflater = getLayoutInflater();
-            View thisRow = inflater.inflate(R.layout.table_row_layout, null);
+            View thisRow = recycled;
+
+            if(thisRow == null) {
+                thisRow = inflater.inflate(R.layout.table_row_layout, null);
+            }
 
             TextView itemField = thisRow.findViewById(R.id.itemField);
-            itemField.setText( getItem( p ) );
+            itemField.setText(getItem(p));
 
             TextView numberField = thisRow.findViewById(R.id.numberField);
-            numberField.setText( Integer.toString( p ) );
+            numberField.setText(Integer.toString(p));
 
             return thisRow;
         }
