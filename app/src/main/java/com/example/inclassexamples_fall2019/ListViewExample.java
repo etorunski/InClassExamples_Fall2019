@@ -1,6 +1,7 @@
 package com.example.inclassexamples_fall2019;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -37,11 +38,16 @@ public class ListViewExample extends AppCompatActivity {
 
         public Object getItem(int position) { return objects.get(position);}  //This returns the string at position p
 
-        public long getItemId(int p) { return 0;} //This returns the database id of the item at position p
+        public long getItemId(int p) { return p;} //This returns the database id of the item at position p
 
         public View getView(int p, View recycled, ViewGroup parent)
         {
-            return ;
+            LayoutInflater inflater = getLayoutInflater();
+            View thisRow = inflater.inflate(R.layout.table_row_layout, null);
+
+
+
+            return thisRow;
         }
     }
 }
