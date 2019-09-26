@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,8 +45,15 @@ public class ListViewExample extends AppCompatActivity {
             myAdapter.notifyDataSetChanged(); //update yourself
         } );
 
-//        SwipeRefreshLayout refresher = findViewById(R.id.refresher);
- //       refresher.setOnRefreshListener( );
+        //Use the swipe refresh listener:
+        SwipeRefreshLayout refresher = findViewById(R.id.refresher);
+        refresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                objects.add("Item " + (1 + objects.size()));
+                myAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
 
