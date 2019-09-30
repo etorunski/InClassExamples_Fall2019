@@ -30,20 +30,27 @@ public class ListViewExample extends AppCompatActivity {
         //You only need 2 lines in onCreate to actually display data:
         ListView theList = findViewById(R.id.theList);
         theList.setAdapter( myAdapter = new MyListAdapter() );
-        theList.setOnItemLongClickListener( ( lv, vw, pos, id) ->{
+        theList.setOnItemClickListener( ( lv, vw, pos, id) ->{
 
             Toast.makeText( ListViewExample.this,
                     "You clicked on:" + pos, Toast.LENGTH_SHORT).show();
 
-            return true;
         } );
 
         Button addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener( clik ->
-                {
-                    objects.add("Item " + (1+objects.size()) );
-                    myAdapter.notifyDataSetChanged(); //update yourself
-                });
+        {
+            objects.add("Item " + (1+objects.size()) );
+            myAdapter.notifyDataSetChanged(); //update yourself
+        });
+
+        SwipeRefreshLayout refresher = findViewById(R.id.refresher);
+        refresher.setOnRefreshListener(() -> {
+
+            objects.add("Item " + (1+objects.size()) );
+            myAdapter.notifyDataSetChanged(); //update yourself
+            refresher.setRefreshing(false);  //get rid of spinning wheel;
+        });
     }
 
 
@@ -62,7 +69,10 @@ public class ListViewExample extends AppCompatActivity {
 
         public View getView(int p, View recycled, ViewGroup parent)
         {
-            View thisRow = getLayoutInflater().inflate(R.layout.table_row_layout, null);
+            View thisRow = recycled;
+
+            if(recycled == null)
+                thisRow = getLayoutInflater().inflate(R.layout.table_row_layout, null);
 
             TextView itemText = thisRow.findViewById(R.id.itemField  );
             itemText.setText( "Array at:" + p + " is " + getItem(p) );
