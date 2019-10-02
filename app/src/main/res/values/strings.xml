@@ -1,8 +1,25 @@
 <resources>
-    <string name="app_name">InClassExamples_Fall2019</string>
-    <string name="welcome">Hello world!</string>
-    <string name="firstButton">Go to activity 2</string>
-    <string name="secondButton">Go to activity 3</string>
-    <string name="finish">Finish</string>
+    <string name="app_name">InClassExamples_W19</string>
+    <string name="Hello">Hello world!</string>
+    <string name="button">a button string</string>
+    <string name="button2">button 2</string>
+    <string name="button3">button 3</string>
+    <string name="previousPage">Go To Previous Page</string>
+
+    <string name="firstPage">This is the First Page</string>
+    <string name="secondPage">This is the Second Page</string>
+    <string name="thirdPage">This is the Third Page</string>
+
+    <string name="goToSecondPage">Go To Second Page</string>
+    <string name="goToThirdPage">Go To Third Page</string>
+    <string name="back">Back</string>
     <string name="save">Save</string>
+    <string name="insert">Insert</string>
+    <string name="typeHere">Type here</string>
+    <string name="typeHereToSave">Type something here and it will be saved for next time</string>
+    <string name="Name">Name</string>
+    <string name="Email">Email</string>
+    <string name="ID">id</string>
+    <string name="update">update</string>
+    <string name="delete">delete</string>
 </resources>
