@@ -1,6 +1,7 @@
 package com.example.inclassexamples_fall2019;
 
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -28,17 +30,17 @@ import static org.xmlpull.v1.XmlPullParser.TEXT;
 
 
 public class AsyncTaskExample extends AppCompatActivity {
-
+    private Context thisApp ;
     private static final String TOAST = "TOAST";
     private static final String SNACK = "SNACK";
     private static final String ALERT = "ALERT";
-
+    EditText search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async_layout);
-        EditText search = (EditText)findViewById(R.id.searchBar);
-
+        search = (EditText)findViewById(R.id.searchBar);
+        thisApp = this;
 
         Button runToast = (Button)findViewById(R.id.runToast);
         runToast.setOnClickListener( click -> {
@@ -65,13 +67,13 @@ public class AsyncTaskExample extends AppCompatActivity {
 
     private void runQuery(String query, String responseType)
     {
-        MyNetworkQuery theQuery = new MyNetworkQuery();
+        MyNetworkQuery theQuery = new MyNetworkQuery(responseType);
         theQuery.execute(query);
     }
 
             //                                      Type1, Type2   Type3
     private class MyNetworkQuery extends AsyncTask<String, String, String>{
-
+        String responseType;
         @Override                       //Type 1
         protected String doInBackground(String... strings) {
             String ret = null;
@@ -142,7 +144,27 @@ public class AsyncTaskExample extends AppCompatActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
             //Update GUI stuff only:
+            switch (responseType)
+            {
+                case TOAST:
+                    Toast.makeText(thisApp, values[0] + " is " + values[1], Toast.LENGTH_LONG).show();
+                    break;
+                case SNACK:
+                    Snackbar.make(search, values[0] + " is " + values[1], Snackbar.LENGTH_LONG).show();
+                case ALERT:
+                    AlertDialog.Builder b = new AlertDialog.Builder(thisApp);
+                    b.setTitle("Message:")
+                            .setMessage(values[0] + " is " + values[1])
+                            .setPositiveButton("I'm positive", (clk, btn) -> { /* do this when clicked */ })
+                            .setNegativeButton("I'm negative", (clk, btn) -> { /* do this when clicked */ })
+                            .create()
+                            .show();
+            }
+        }
 
+        public MyNetworkQuery(String s)
+        {
+            responseType = s;
         }
     }
 }
