@@ -5,21 +5,23 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.snackbar.Snackbar;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,7 +31,7 @@ import static org.xmlpull.v1.XmlPullParser.START_TAG;
 import static org.xmlpull.v1.XmlPullParser.TEXT;
 
 
-public class AsyncTaskExample extends AppCompatActivity {
+public class AsyncJSONTaskExample extends AppCompatActivity {
     private Context thisApp ;
     private static final String TOAST = "TOAST";
     private static final String SNACK = "SNACK";
@@ -85,51 +87,21 @@ public class AsyncTaskExample extends AppCompatActivity {
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream inStream = urlConnection.getInputStream();
 
-                //Set up the XML parser:
-                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-                factory.setNamespaceAware(false);
-                XmlPullParser xpp = factory.newPullParser();
-                xpp.setInput( inStream  , "UTF-8");
+                //Set up the JSON object parser:
+                // json is UTF-8 by default
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream, "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
 
-                //Iterate over the XML tags:
-                int EVENT_TYPE;         //While not the end of the document:
-                while((EVENT_TYPE = xpp.getEventType()) != XmlPullParser.END_DOCUMENT)
+                String line = null;
+                while ((line = reader.readLine()) != null)
                 {
-                    switch(EVENT_TYPE)
-                    {
-                        case START_TAG:         //This is a start tag < ... >
-                            String tagName = xpp.getName(); // What kind of tag?
-                            if(tagName.equals("AMessage"))
-                            {
-                                String message = xpp.getAttributeValue(null, "message"); //What is the String associated with message?
-                                publishProgress("Message", message);
-                            }
-                            else if(tagName.equals("Weather"))
-                            {
-                                String outlook = xpp.getAttributeValue(null, "outlook");
-                                publishProgress("Outlook", outlook);
-
-                                String windy = xpp.getAttributeValue(null, "windy");
-                                publishProgress("Windy", windy);
-                            }
-                            else if(tagName.equals("Temperature"))
-                            {
-                                xpp.next(); //There is a text right after the opening of <Temperature> so move the pointer next
-                                String text = xpp.getText();
-                                publishProgress("Temperature", text);
-                            }
-                            break;
-                        case END_TAG:           //This is an end tag: </ ... >
-                            break;
-                        case TEXT:              //This is text between tags < ... > Hello world </ ... >
-                            break;
-                    }
-                    xpp.next(); // move the pointer to next XML element
+                    sb.append(line + "\n");
                 }
+                String result = sb.toString();
+
             }
             catch(MalformedURLException mfe){ ret = "Malformed URL exception"; }
             catch(IOException ioe)          { ret = "IO Exception. Is the Wifi connected?";}
-            catch(XmlPullParserException pe){ ret = "XML Pull exception. The XML is not properly formed" ;}
             //What is returned here will be passed as a parameter to onPostExecute:
             return ret;
         }
