@@ -80,7 +80,7 @@ public class AsyncJSONTaskExample extends AppCompatActivity {
         protected String doInBackground(String ... strings) {
 
             String ret = null;
-            String queryURL = "http://torunski.ca/CST2335_XML.xml";
+            String queryURL = "https://api.exchangeratesapi.io/latest?base=USD";
 
             try {       // Connect to the server:
                 URL url = new URL(queryURL);
