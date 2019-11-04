@@ -49,7 +49,7 @@ public class AsyncTaskExample extends AppCompatActivity {
 
 
             String query = Uri.encode(search.getText().toString() ); //Have to encode strings to send in URL
-            this.runQuery(query, SNACK);
+            this.runQuery(query, TOAST);
         });
 
         Button runSnackbar = (Button)findViewById(R.id.runSnackbar);
@@ -138,6 +138,7 @@ public class AsyncTaskExample extends AppCompatActivity {
             super.onPostExecute(sentFromDoInBackground);
             //update GUI Stuff:
 
+            search.setText("Finished background thread");
         }
 
         @Override                       //Type 2
@@ -151,6 +152,7 @@ public class AsyncTaskExample extends AppCompatActivity {
                     break;
                 case SNACK:
                     Snackbar.make(search, values[0] + " is " + values[1], Snackbar.LENGTH_LONG).show();
+               break;
                 case ALERT:
                     AlertDialog.Builder b = new AlertDialog.Builder(thisApp);
                     b.setTitle("Message:")
