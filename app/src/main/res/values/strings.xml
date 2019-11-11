@@ -22,4 +22,7 @@
     <string name="ID">id</string>
     <string name="update">update</string>
     <string name="delete">delete</string>
+    <string name="aButton">Button</string>
+
+    <string name="search">Search</string>
 </resources>
