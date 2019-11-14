@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+
 
 public class MenuExample extends AppCompatActivity {
 
@@ -42,23 +44,26 @@ public class MenuExample extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.example_menu, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
 
 
-	    /* slide 15 material:
-	    MenuItem searchItem = menu.findItem(R.id.search_item);
-        SearchView sView = (SearchView)searchItem.getActionView();
+        /* slide 15 material:  */
+        MenuItem searchItem = menu.findItem(R.id.search_item);
+        SearchView sView = (SearchView) searchItem.getActionView();
         sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                return true;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
-            }  });
+            }
+        });
 
-	    */
+
 
         return true;
     }
@@ -69,6 +74,11 @@ public class MenuExample extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.item1:
+Toast.makeText(this, "You clicked on the icon", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.search_item:
+                Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
+
 
                 break;
         }
