@@ -12,7 +12,7 @@ public class EmptyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_empty);
 
         Bundle dataToPass = getIntent().getExtras(); //get the data that was passed from FragmentExample
-
+/* So far the screen is blank
         //This is copied directly from FragmentExample.java lines 47-54
         DetailFragment dFragment = new DetailFragment();
         dFragment.setArguments( dataToPass ); //pass data to the the fragment
@@ -21,6 +21,6 @@ public class EmptyActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.fragmentLocation, dFragment)
                 .addToBackStack("AnyName")
-                .commit();
+                .commit();  */
     }
 }
