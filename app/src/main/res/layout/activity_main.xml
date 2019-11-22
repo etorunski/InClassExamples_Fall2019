@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+
+               android:layout_marginTop="27dp"
+               android:layout_marginBottom="27dp"
+               android:layout_marginLeft="48dp"
+               android:layout_marginRight="48dp" >
+
+    <Button android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Button 1"
+        android:nextFocusDown="@id/button2"
+        android:nextFocusUp="@id/button4"
+        android:nextFocusRight="@id/button1"
+        android:nextFocusLeft="@id/button1"
+
+        android:id="@+id/button1"/>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Button 2"
+            android:nextFocusDown="@id/button4"
+            android:nextFocusUp="@id/button1"
+            android:nextFocusRight="@id/button3"
+            android:nextFocusLeft="@id/button3"
+            android:id="@+id/button2"/>
+
+        <Button android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Button 3"
+            android:nextFocusDown="@id/button4"
+            android:nextFocusUp="@id/button1"
+            android:nextFocusRight="@id/button2"
+            android:nextFocusLeft="@id/button2"
+            android:id="@+id/button3"/>
+    </LinearLayout>
+
+    <Button android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Weather forecast"
+        android:nextFocusDown="@id/button1"
+        android:nextFocusUp="@id/button2"
+        android:nextFocusRight="@id/button4"
+        android:nextFocusLeft="@id/button4"
+
+
+        android:id="@+id/button4"/>
+</LinearLayout>
