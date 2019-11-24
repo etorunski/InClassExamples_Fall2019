@@ -9,10 +9,13 @@
         android:icon="@drawable/freeicon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmptyActivity"/>
-        <activity android:name=".FragmentExample">
+        <activity android:name=".NextActivity"/>
+        <activity
+            android:name=".NavigationExample"
+            android:label="@string/title_activity_navigation_example">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
