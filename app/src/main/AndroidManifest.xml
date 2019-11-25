@@ -3,18 +3,20 @@
     package="com.example.inclassexamples_fall2019">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/freeicon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmptyActivity"/>
-        <activity android:name=".FragmentExample">
+        <activity android:name=".Sensors_Example">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
